@@ -80,7 +80,7 @@ html_css_files = [
     "css/style.css",
 ]
 html_favicon = "_static/icons/favicon.svg"
-html_logo = "_static/icons/logo.svg"
+html_logo = "_static/icons/logo.png"
 html_permalinks_icon = "🔗"
 html_show_sphinx = False
 html_static_path = ["_static"]
