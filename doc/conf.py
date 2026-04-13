@@ -94,6 +94,7 @@ html_theme_options = {
             "icon": "fa-brands fa-github",
         },
     ],
+    "external_links": [{"name": "Neuroling", "url": "https://dynoball.org/"}],
     "header_links_before_dropdown": 10,
     "search_bar_text": "Search this site...",
     "show_prev_next": False,
