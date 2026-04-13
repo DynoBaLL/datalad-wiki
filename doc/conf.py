@@ -23,7 +23,7 @@ author = "Dynamics of Brain and Language Lab, University of Geneva"
 copyright = f"{date.today().year}, {author}"  # noqa: A001
 release = datalad_wiki.__version__
 package = datalad_wiki.__name__
-gitlab_url = "https://gitlab.unige.ch/neuroling/datalad"
+github_url = "https://github.com/DynoBaLL/datalad-wiki"
 
 # -- general configuration -------------------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -92,9 +92,9 @@ html_title = project
 html_theme_options = {
     "icon_links": [
         {
-            "name": "Gitlab",
-            "url": "https://gitlab.unige.ch/neuroling/datalad",
-            "icon": "fa-brands fa-gitlab",
+            "name": "GitHub",
+            "url": github_url,
+            "icon": "fa-brands fa-github",
         },
     ],
     "header_links_before_dropdown": 10,
@@ -120,7 +120,7 @@ intersphinx_mapping = {
 intersphinx_timeout = 5
 
 # -- sphinx-issues ---------------------------------------------------------------------
-issues_github_path = gitlab_url.split("https://gitlab.unige.ch/")[-1]
+issues_github_path = github_url.split("https://github.com/")[-1]
 
 # -- autosectionlabels -----------------------------------------------------------------
 autosectionlabel_prefix_document = True
@@ -221,7 +221,7 @@ def linkcode_resolve(domain: str, info: dict[str, str]) -> str | None:
     else:
         return None  # alternatively, link to a maint/version branch
     fname = fname.rsplit(f"/{package}/")[1]
-    url = f"{gitlab_url}/blob/{branch}/{package}/{fname}#{lines}"
+    url = f"{github_url}/blob/{branch}/{package}/{fname}#{lines}"
     return url
 
 # -- sphinx-gallery --------------------------------------------------------------------

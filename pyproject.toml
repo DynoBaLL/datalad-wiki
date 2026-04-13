@@ -88,10 +88,10 @@ test = [
 ]
 
 [project.urls]
-documentation = "https://gitlab.unige.ch/neuroling/datalad"
-homepage = "https://gitlab.unige.ch/neuroling/datalad"
-source = "https://gitlab.unige.ch/neuroling/datalad"
-tracker = "https://gitlab.unige.ch/neuroling/datalad/-/issues"
+documentation = "https://dynoball.github.io/datalad-wiki/"
+homepage = "https://github.com/DynoBaLL/datalad-wiki"
+source = "https://github.com/DynoBaLL/datalad-wiki"
+tracker = "https://github.com/DynoBaLL/datalad-wiki"
 
 [tool.codespell]
 check-filenames = true
