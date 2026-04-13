@@ -32,7 +32,7 @@ jobs:
       - uses: astral-sh/setup-uv@v7
       - run: uv pip install --quiet --system .[test]
       - run: pytest datalad_wiki --cov=datalad_wiki --cov-report=xml --cov-config=pyproject.toml
-      - uses: codecov/codecov-action@v5
+      - uses: codecov/codecov-action@v6
         with:
           files: ./coverage.xml
           flags: unittests  # optional
@@ -61,7 +61,7 @@ jobs:
           uv pip install --quiet --system .[test]
           uv pip install --quiet --system --upgrade --prerelease allow --only-binary :all: -i https://pypi.anaconda.org/scientific-python-nightly-wheels/simple numpy
       - run: pytest datalad_wiki --cov=datalad_wiki --cov-report=xml --cov-config=pyproject.toml
-      - uses: codecov/codecov-action@v5
+      - uses: codecov/codecov-action@v6
         with:
           files: ./coverage.xml
           flags: unittests  # optional
