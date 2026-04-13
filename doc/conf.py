@@ -76,9 +76,6 @@ default_role = "py:obj"
 suppress_warnings = ["config.cache"]
 
 # -- options for HTML output -----------------------------------------------------------
-html_css_files = [
-    "css/style.css",
-]
 html_favicon = "_static/icons/favicon.svg"
 html_logo = "_static/icons/logo.png"
 html_permalinks_icon = "🔗"
@@ -179,7 +176,7 @@ bibtex_bibfiles = ["./references.bib"]
 html_static_path = ['_static']
 def setup(app):
     """Add custom CSS file."""
-    app.add_css_file('custom.css')
+    app.add_css_file('css/custom.css')
 
 def linkcode_resolve(domain: str, info: dict[str, str]) -> str | None:
     """Determine the URL corresponding to a Python object.

@@ -21,6 +21,7 @@ jobs:
       - uses: astral-sh/setup-uv@v7
       - run: uv pip install --quiet --system .[doc]
       - run: sphinx-build -b html doc ./doc/_build -W --keep-going
+      - run: cp .nojekyll ./doc/_build/.nojekyll
       - uses: actions/upload-artifact@v7
         with:
           name: doc-dev
