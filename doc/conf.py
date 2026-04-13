@@ -1,0 +1,261 @@
+# Configuration file for the Sphinx documentation builder.
+#
+# For the full list of built-in configuration values, see the documentation:
+# https://www.sphinx-doc.org/en/master/usage/configuration.html
+
+from __future__ import annotations
+
+import inspect
+import subprocess
+import sys
+from datetime import date
+from importlib import import_module
+
+from sphinx_gallery.sorting import FileNameSortKey
+
+import datalad_wiki
+
+# -- project information ---------------------------------------------------------------
+# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
+
+project = "datalad-wiki"
+author = "Dynamics of Brain and Language Lab, University of Geneva"
+copyright = f"{date.today().year}, {author}"  # noqa: A001
+release = datalad_wiki.__version__
+package = datalad_wiki.__name__
+github_url = "https://github.com/DynoBaLL/datalad-wiki"
+
+# -- general configuration -------------------------------------------------------------
+# https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
+
+# If your documentation needs a minimal Sphinx version, state it here.
+needs_sphinx = "5.0"
+
+# The document name of the “root” document, that is, the document that contains the root
+# toctree directive.
+root_doc = "index"
+
+# Add any Sphinx extension module names here, as strings. They can be extensions coming
+# with Sphinx (named "sphinx.ext.*") or your custom ones.
+extensions = [
+    "myst_nb",
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosectionlabel",
+    "sphinx.ext.autosummary",
+    "sphinx.ext.intersphinx",
+    "sphinx.ext.linkcode",
+    "sphinx.ext.mathjax",
+    "numpydoc",
+    "sphinxcontrib.bibtex",
+    "sphinx_copybutton",
+    "sphinx_design",
+    "sphinx_gallery.gen_gallery",
+    "sphinx_issues",
+]
+
+nb_execution_mode = "auto"
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "**.ipynb_checkpoints", "spelling_wordlist.txt"]
+templates_path = ["_templates"]
+
+
+myst_enable_extensions = [
+    "colon_fence",  #  ```{include}
+
+]
+
+# Sphinx will warn about all references where the target cannot be found.
+nitpicky = True
+nitpick_ignore = []
+
+# The name of a reST role (builtin or Sphinx extension) to use as the default role, that
+# is, for text marked up `like this`. This can be set to 'py:obj' to make `filter` a
+# cross-reference to the Python function “filter”.
+default_role = "py:obj"
+
+# list of warning types to suppress
+suppress_warnings = ["config.cache"]
+
+# -- options for HTML output -----------------------------------------------------------
+html_css_files = [
+    "css/style.css",
+]
+html_favicon = "_static/icons/favicon.svg"
+html_logo = "_static/icons/logo.png"
+html_permalinks_icon = "🔗"
+html_show_sphinx = False
+html_static_path = ["_static"]
+html_theme = 'pydata_sphinx_theme'
+html_title = project
+
+
+# https://pydata-sphinx-theme.readthedocs.io/en/v0.7.2/user_guide/configuring.html
+html_theme_options = {
+    "icon_links": [
+        {
+            "name": "GitHub",
+            "url": github_url,
+            "icon": "fa-brands fa-github",
+        },
+    ],
+    "header_links_before_dropdown": 10,
+    "search_bar_text": "Search this site...",
+    "show_prev_next": False,
+}
+
+# -- autosummary -----------------------------------------------------------------------
+autosummary_generate = True
+
+# -- autodoc ---------------------------------------------------------------------------
+autodoc_typehints = "none"
+autodoc_member_order = "groupwise"
+autodoc_warningiserror = True
+autoclass_content = "class"
+
+# -- intersphinx -----------------------------------------------------------------------
+intersphinx_mapping = {
+    "datalad": ("https://docs.datalad.org/en/stable/", None),
+    "datalad-next": ("https://docs.datalad.org/projects/next/en/latest/", None),
+    "matplotlib": ("https://matplotlib.org/stable/", None),
+}
+intersphinx_timeout = 5
+
+# -- sphinx-issues ---------------------------------------------------------------------
+issues_github_path = github_url.split("https://github.com/")[-1]
+
+# -- autosectionlabels -----------------------------------------------------------------
+autosectionlabel_prefix_document = True
+
+# -- numpydoc --------------------------------------------------------------------------
+numpydoc_class_members_toctree = False
+numpydoc_attributes_as_param_list = False
+
+# x-ref
+numpydoc_xref_param_type = True
+numpydoc_xref_aliases = {
+    # Matplotlib
+    "Axes": "matplotlib.axes.Axes",
+    "Figure": "matplotlib.figure.Figure",
+    # Python
+    "bool": ":class:`python:bool`",
+    "file-like": ":term:`file-like <python:file object>`",
+    "path-like": ":term:`path-like`",
+    "Path": "pathlib.Path",
+    "TextIO": "io.TextIOBase",
+}
+numpydoc_xref_ignore = {
+    "of",
+    "shape",
+}
+
+# validation
+# https://numpydoc.readthedocs.io/en/latest/validation.html#validation-checks
+error_ignores = {
+    "GL01",  # docstring should start in the line immediately after the quotes
+    "EX01",  # section 'Examples' not found
+    "ES01",  # no extended summary found
+    "SA01",  # section 'See Also' not found
+    "RT02",  # The first line of the Returns section should contain only the type, unless multiple values are being returned  # noqa: E501
+}
+numpydoc_validate = True
+numpydoc_validation_checks = {"all"} | set(error_ignores)
+numpydoc_validation_exclude = {  # regex to ignore during docstring check
+    r"\.__getitem__",
+    r"\.__contains__",
+    r"\.__hash__",
+    r"\.__mul__",
+    r"\.__sub__",
+    r"\.__add__",
+    r"\.__iter__",
+    r"\.__div__",
+    r"\.__neg__",
+}
+
+# -- sphinxcontrib-bibtex --------------------------------------------------------------
+bibtex_bibfiles = ["./references.bib"]
+
+# -- sphinx.ext.linkcode ---------------------------------------------------------------
+# https://www.sphinx-doc.org/en/master/usage/extensions/linkcode.html
+
+html_static_path = ['_static']
+def setup(app):
+    """Add custom CSS file."""
+    app.add_css_file('custom.css')
+
+def linkcode_resolve(domain: str, info: dict[str, str]) -> str | None:
+    """Determine the URL corresponding to a Python object.
+
+    Parameters
+    ----------
+    domain : str
+        One of 'py', 'c', 'cpp', 'javascript'.
+    info : dict
+        With keys "module" and "fullname".
+
+    Returns
+    -------
+    url : str | None
+        The code URL. If None, no link is added.
+    """
+    if domain != "py":
+        return None  # only document python objects
+
+    # retrieve pyobject and file
+    try:
+        module = import_module(info["module"])
+        pyobject = module
+        for elt in info["fullname"].split("."):
+            pyobject = getattr(pyobject, elt)
+        fname = inspect.getsourcefile(pyobject).replace("\\", "/")
+    except Exception:
+        # Either the object could not be loaded or the file was not found.
+        # For instance, properties will raise.
+        return None
+
+    # retrieve start/stop lines
+    source, start_line = inspect.getsourcelines(pyobject)
+    lines = f"L{start_line}-L{start_line + len(source) - 1}"
+
+    # create URL
+    if "dev" in release:
+        branch = "main"
+    else:
+        return None  # alternatively, link to a maint/version branch
+    fname = fname.rsplit(f"/{package}/")[1]
+    url = f"{github_url}/blob/{branch}/{package}/{fname}#{lines}"
+    return url
+
+# -- sphinx-gallery --------------------------------------------------------------------
+if sys.platform.startswith("win"):
+    try:
+        subprocess.check_call(["optipng", "--version"])
+        compress_images = ("images", "thumbnails")
+    except Exception:
+        compress_images = ()
+else:
+    compress_images = ("images", "thumbnails")
+
+sphinx_gallery_conf = {
+    "backreferences_dir": "generated/backreferences",
+    "compress_images": compress_images,
+    "doc_module": (f"{package}",),
+    "examples_dirs": ["../tutorials"],
+    "exclude_implicit_doc": {},  # set
+    "filename_pattern": r"\d{2}_",
+    "gallery_dirs": ["generated/tutorials"],
+    "line_numbers": False,
+    "plot_gallery": "True",  # str, to enable overwrite from CLI without warning
+    "reference_url": {f"{package}": None},
+    "remove_config_comments": True,
+    "show_memory": True,
+    "within_subsection_order": FileNameSortKey,
+}
+
+# -- linkcheck -------------------------------------------------------------------------
+linkcheck_anchors = False  # saves a bit of time
+linkcheck_timeout = 15  # some can be quite slow
+linkcheck_retries = 3
+linkcheck_ignore = []  # will be compiled to regex
+
+# -- sphinx_copybutton -----------------------------------------------------------------
+copybutton_prompt_text = r">>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.\.\.: | {5,8}: "
+copybutton_prompt_is_regexp = True
