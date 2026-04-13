@@ -20,7 +20,6 @@ jobs:
           python-version: 3.11
       - uses: astral-sh/setup-uv@v7
       - run: uv pip install --quiet --system .[doc]
-      - run: eeg-wiki sys-info --developer
       - run: make -C doc html
       - name: Prune sphinx environment
         run: rm -R ./doc/_build/html/.doctrees

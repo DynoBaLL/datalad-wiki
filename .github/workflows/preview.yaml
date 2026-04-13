@@ -35,8 +35,6 @@ jobs:
           sudo apt install -y optipng
       - name: Install package
         run: python -m pip install --progress-bar off .[doc]
-      - name: Display system information
-        run: eeg-wiki sys-info --developer
       - name: Build doc
         run: make -C doc html
         continue-on-error: true
