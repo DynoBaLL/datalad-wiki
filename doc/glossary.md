@@ -12,6 +12,10 @@ datalad
     <img src="https://avatars.githubusercontent.com/u/8927200?s=200&v=4" class="glossary-logo-image" alt="" />A data management tool that provides a unified interface for managing and sharing data across different platforms and storage systems.
     The [Datalad Handbook](https://handbook.datalad.org/en/latest/) provides comprehensive documentation and guides for using Datalad effectively.
 
+datalad-next
+    <img src="https://avatars.githubusercontent.com/u/8927200?s=200&v=4" class="glossary-logo-image" alt="" /> A datalad
+    extension that provides additional features and improvements over the original datalad. Once installed, datalad-next replaces the original datalad command wwithout requiring any changes to existing workflows. datalad-next is recommended for all users, especially on Windows, where it provides better support and performance.
+
 git
     <i class="fa-brands fa-git-alt glossary-logo" aria-hidden="true"></i>A distributed version control system that allows multiple people to collaborate on a project by tracking changes to files and coordinating work on those files.
     Git is widely used in software development and other collaborative projects to manage code and track changes over time.
@@ -46,4 +50,7 @@ ssh
 
 VM
     <i class="fa-solid fa-computer glossary-logo" aria-hidden="true"></i>Virtual Machine: a software emulation of a physical computer that runs an operating system and applications just like a physical computer.
+
+WSL
+    <i class="fa-solid fa-computer glossary-logo" aria-hidden="true"></i>Windows Subsystem for Linux: a compatibility layer for running Linux binary executables natively on Windows.
 ```
