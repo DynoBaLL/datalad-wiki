@@ -51,8 +51,9 @@ extensions = [
     "sphinx_design",
     "sphinx_gallery.gen_gallery",
     "sphinx_issues",
+    "sphinxcontrib.spelling",
+    "sphinx_sitemap",
 ]
-
 nb_execution_mode = "auto"
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "**.ipynb_checkpoints", "spelling_wordlist.txt"]
 templates_path = ["_templates"]
@@ -83,7 +84,7 @@ html_show_sourcelink = False
 html_static_path = ["_static"]
 html_theme = 'pydata_sphinx_theme'
 html_title = project
-
+html_baseurl = "https://dynoball.github.io/datalad-wiki/"
 
 # https://pydata-sphinx-theme.readthedocs.io/en/v0.7.2/user_guide/configuring.html
 html_theme_options = {
