@@ -7,7 +7,7 @@
 
 This website is the result of a project initiated by the [The Dynamics of Brain and Language Lab](https://dynoball.org/) at the University of Geneva. 
 It received a grant from the University of Geneva's [Open Research Data](https://www.unige.ch/researchdata/en/presentation/news/call-ord-2025-funded-projects/)
-fuding program, which supports initiatives aimed at improving the management and sharing of research data.
+funding program, which supports initiatives aimed at improving the management and sharing of research data.
 
 
 
