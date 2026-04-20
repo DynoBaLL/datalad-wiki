@@ -1,0 +1,9 @@
+[pre-commit]: https://pre-commit.com/
+[project-github]: https://github.com/DynoBaLL/datalad-wiki
+[project-issue-tracker]: https://github.com/DynoBaLL/datalad-wiki/issues
+[rst]: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
+[sphinx-gallery]: https://sphinx-gallery.github.io/stable/index.html
+[neuroling]: https://dynoball.org/
+[gitlab-unige]: https://gitlab.unige.ch/
+[victor-ferat]: https://orcid.org/0000-0003-1952-7657
+[alexis-hervais-adelman]: https://orcid.org/0000-0002-5232-626X

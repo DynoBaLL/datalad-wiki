@@ -79,7 +79,7 @@ suppress_warnings = ["config.cache"]
 html_favicon = "_static/icons/favicon.svg"
 html_logo = "_static/icons/logo.png"
 html_permalinks_icon = "🔗"
-html_show_sphinx = False
+html_show_sourcelink = False
 html_static_path = ["_static"]
 html_theme = 'pydata_sphinx_theme'
 html_title = project
@@ -98,7 +98,12 @@ html_theme_options = {
     "header_links_before_dropdown": 10,
     "search_bar_text": "Search this site...",
     "show_prev_next": False,
+    "footer_start": ["copyright"],
+    "footer_center": ["footer-content"],
+    "footer_end": ["sphinx-version"],
 }
+
+html_sidebars = {"**": []}
 
 # -- autosummary -----------------------------------------------------------------------
 autosummary_generate = True
