@@ -7,3 +7,4 @@
 [gitlab-unige]: https://gitlab.unige.ch/
 [victor-ferat]: https://orcid.org/0000-0003-1952-7657
 [alexis-hervais-adelman]: https://orcid.org/0000-0002-5232-626X
+[unige-digitalworkspace]: https://unige-dwp.onbmc.com/

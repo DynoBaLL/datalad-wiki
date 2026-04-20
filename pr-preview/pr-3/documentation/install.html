@@ -7,11 +7,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta content="A wiki about using DataLad in UNIGE infrastructure." lang="en" name="description" xml:lang="en" />
-<meta content="DataLad, UNIGE, wiki" name="keywords" />
-<meta content="en_US" property="og:locale" />
 
-    <title>Documentation &#8212; datalad-wiki</title>
+    <title>Install &#8212; datalad-wiki</title>
   
   
   
@@ -55,15 +52,15 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=30646c52"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/install';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
-    <link rel="canonical" href="https://dynoball.github.io/datalad-wiki/documentation/index.html" />
+    <link rel="canonical" href="https://dynoball.github.io/datalad-wiki/documentation/install.html" />
     <link rel="icon" href="../_static/favicon.svg"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Install" href="install.html" />
-    <link rel="prev" title="About" href="../about.html" />
+    <link rel="next" title="Gitlab + NAS setup" href="gitlab_nas.html" />
+    <link rel="prev" title="Documentation" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -160,7 +157,7 @@
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
+  <a class="nav-link nav-internal" href="index.html">
     Documentation
   </a>
 </li>
@@ -245,6 +242,10 @@
   
 
   
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
 </div>
 
     </header>
@@ -279,7 +280,7 @@
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
+  <a class="nav-link nav-internal" href="index.html">
     Documentation
   </a>
 </li>
@@ -378,7 +379,10 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Documentation</span></li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Documentation</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Install</span></li>
   </ul>
 </nav>
 </div>
@@ -395,26 +399,101 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="documentation">
-<h1>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">🔗</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="install.html#uv">uv</a></li>
-<li class="toctree-l2"><a class="reference internal" href="install.html#datalad">Datalad</a></li>
-<li class="toctree-l2"><a class="reference internal" href="install.html#ssh-keys">SSH keys</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="install.html#gitlab">Gitlab</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gitlab_nas.html">Gitlab + NAS setup</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="gitlab_nas.html#prerequisites">Prerequisites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gitlab_nas.html#nas-storage">NAS storage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gitlab_nas.html#setting-up-the-remote-machine">Setting up the remote machine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gitlab_nas.html#gitlab-setup">Gitlab setup</a></li>
-</ul>
-</li>
-</ul>
+  <section id="install">
+<h1>Install<a class="headerlink" href="#install" title="Link to this heading">🔗</a></h1>
+<section id="uv">
+<h2>uv<a class="headerlink" href="#uv" title="Link to this heading">🔗</a></h2>
+<p>While datalad can be installed using various methods, we recommend using <a class="reference external" href="https://docs.astral.sh/uv/">uv</a> for managing the project’s dependencies. uv is a modern Python tool that provides a simple and efficient way to manage project dependencies and virtual environments.
+To install uv, you can run the following command in your terminal:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="0" for="sd-tab-item-0">
+macOS &amp; Linux</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</pre></div>
 </div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="1" for="sd-tab-item-1">
+Windows</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">powershell</span> <span class="n">-ExecutionPolicy</span> <span class="n">ByPass</span> <span class="n">-c</span> <span class="s2">&quot;irm https://astral.sh/uv/install.ps1 | iex&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You might need to restart your terminal after installing uv for the changes to take effect.</p>
+</section>
+<section id="datalad">
+<h2>Datalad<a class="headerlink" href="#datalad" title="Link to this heading">🔗</a></h2>
+<p>To install datalad and its dependencies using uv, you can run the following commands in your terminal:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="0" for="sd-tab-item-2">
+macOS &amp; Linux</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>datalad
+uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>datalad-next
+uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>git-annex
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="1" for="sd-tab-item-3">
+Windows</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">uv</span> <span class="n">tool</span> <span class="n">install</span> <span class="n">datalad</span>
+<span class="n">uv</span> <span class="n">tool</span> <span class="n">install</span> <span class="n">datalad-next</span>
+<span class="n">uv</span> <span class="n">tool</span> <span class="n">install</span> <span class="n">git-annex</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This will install <a class="reference internal" href="../glossary.html#term-datalad"><span class="xref std std-term">datalad</span></a>, <a class="reference internal" href="../glossary.html#term-datalad-next"><span class="xref std std-term">datalad-next</span></a>, and <a class="reference internal" href="../glossary.html#term-git-annex"><span class="xref std std-term">git-annex</span></a> in your environment, allowing you to use them for managing your data and projects effectively.</p>
+<p><a class="reference internal" href="../glossary.html#term-git-annex"><span class="xref std std-term">git-annex</span></a> is a tool that allows you to manage large files with Git without storing the file contents in the Git repository. Datalad relies on git-annex for handling large datasets, so it’s important to have it installed as well.</p>
+<p><a class="reference internal" href="../glossary.html#term-datalad-next"><span class="xref std std-term">datalad-next</span></a> is a newer version of datalad that includes additional features and improvements. We recommend installing this version for the best experience, especially on Windows, where it provides better support and performance. <a class="reference internal" href="../glossary.html#term-datalad-next"><span class="xref std std-term">datalad-next</span></a> must be enabled once installed:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="0" for="sd-tab-item-4">
+macOS &amp; Linux</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>--add<span class="w"> </span>datalad.extensions.load<span class="w"> </span>next
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="1" for="sd-tab-item-5">
+Windows</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="p">-</span><span class="n">-global</span> <span class="p">-</span><span class="n">-add</span> <span class="n">datalad</span><span class="p">.</span><span class="n">extensions</span><span class="p">.</span><span class="n">load</span> <span class="n">next</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ssh-keys">
+<h2>SSH keys<a class="headerlink" href="#ssh-keys" title="Link to this heading">🔗</a></h2>
+<p>To use <a class="reference internal" href="../glossary.html#term-datalad"><span class="xref std std-term">datalad</span></a> effectively, especially when working with remote repositories and servers such as <a class="reference internal" href="../glossary.html#term-gitlab"><span class="xref std std-term">gitlab</span></a> and remote machines(<a class="reference internal" href="../glossary.html#term-VM"><span class="xref std std-term">VM</span></a>) it is recommended to set up <a class="reference internal" href="../glossary.html#term-ssh"><span class="xref std std-term">ssh</span></a> keys for secure and convenient authentication.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="0" for="sd-tab-item-6">
+macOS &amp; Linux</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>rsa<span class="w"> </span>-b<span class="w"> </span><span class="m">4096</span><span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;your.email@example.com&quot;</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="1" for="sd-tab-item-7">
+Windows</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">ssh-keygen</span> <span class="n">-t</span> <span class="n">rsa</span> <span class="n">-b</span> <span class="n">4096</span> <span class="n">-C</span> <span class="s2">&quot;your.email@example.com&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The new ssh key will be generated and saved in the default location (usually <code class="docutils literal notranslate"><span class="pre">~/.ssh/id_rsa</span></code> for the private key and <code class="docutils literal notranslate"><span class="pre">~/.ssh/id_rsa.pub</span></code> for the public key).</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>SSH keys are sensitive and should be kept secure. Do not share your private key with anyone, and consider using a passphrase for added security. Make sure to never commit your private key to any repository or share it in any public space.</p>
+</div>
+</section>
+</section>
+<section id="gitlab">
+<h1>Gitlab<a class="headerlink" href="#gitlab" title="Link to this heading">🔗</a></h1>
 </section>
 
 
@@ -427,6 +506,31 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Install</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uv">uv</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datalad">Datalad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ssh-keys">SSH keys</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gitlab">Gitlab</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>

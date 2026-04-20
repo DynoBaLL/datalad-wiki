@@ -7,11 +7,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta content="A wiki about using DataLad in UNIGE infrastructure." lang="en" name="description" xml:lang="en" />
-<meta content="DataLad, UNIGE, wiki" name="keywords" />
-<meta content="en_US" property="og:locale" />
 
-    <title>Documentation &#8212; datalad-wiki</title>
+    <title>Gitlab + NAS setup &#8212; datalad-wiki</title>
   
   
   
@@ -55,15 +52,15 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=30646c52"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/gitlab_nas';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
-    <link rel="canonical" href="https://dynoball.github.io/datalad-wiki/documentation/index.html" />
+    <link rel="canonical" href="https://dynoball.github.io/datalad-wiki/documentation/gitlab_nas.html" />
     <link rel="icon" href="../_static/favicon.svg"/>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Install" href="install.html" />
-    <link rel="prev" title="About" href="../about.html" />
+    <link rel="next" title="Glossary" href="../glossary.html" />
+    <link rel="prev" title="Install" href="install.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -160,7 +157,7 @@
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
+  <a class="nav-link nav-internal" href="index.html">
     Documentation
   </a>
 </li>
@@ -245,6 +242,10 @@
   
 
   
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
 </div>
 
     </header>
@@ -279,7 +280,7 @@
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
+  <a class="nav-link nav-internal" href="index.html">
     Documentation
   </a>
 </li>
@@ -378,7 +379,10 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Documentation</span></li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Documentation</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Gitlab + NAS setup</span></li>
   </ul>
 </nav>
 </div>
@@ -395,26 +399,73 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="documentation">
-<h1>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">🔗</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="install.html#uv">uv</a></li>
-<li class="toctree-l2"><a class="reference internal" href="install.html#datalad">Datalad</a></li>
-<li class="toctree-l2"><a class="reference internal" href="install.html#ssh-keys">SSH keys</a></li>
+  <section id="gitlab-nas-setup">
+<h1>Gitlab + NAS setup<a class="headerlink" href="#gitlab-nas-setup" title="Link to this heading">🔗</a></h1>
+<p>For this setup, we will use the University of Geneva’s NAS storage service to store data and the University of Geneva’s GitLab instance for version control, metadata storage, and collaboration. This setup allows you to manage your data and projects effectively while leveraging the capabilities of both NAS and GitLab.</p>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">🔗</a></h2>
+<ul class="simple">
+<li><p>[ ] <a class="reference internal" href="install.html#uv"><span class="std std-ref">Install uv</span></a></p></li>
+<li><p>[ ] <a class="reference internal" href="install.html#ssh-keys"><span class="std std-ref">Create SSH keys</span></a></p></li>
+<li><p>[ ] <a class="reference internal" href="install.html#gitlab"><span class="std std-ref">Setup GitLab</span></a></p></li>
+<li><p>[ ] <a class="reference internal" href="install.html#nas"><span class="std std-ref">Setup NAS</span></a></p></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="install.html#gitlab">Gitlab</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gitlab_nas.html">Gitlab + NAS setup</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="gitlab_nas.html#prerequisites">Prerequisites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gitlab_nas.html#nas-storage">NAS storage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gitlab_nas.html#setting-up-the-remote-machine">Setting up the remote machine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gitlab_nas.html#gitlab-setup">Gitlab setup</a></li>
+</section>
+<section id="nas-storage">
+<h2>NAS storage<a class="headerlink" href="#nas-storage" title="Link to this heading">🔗</a></h2>
+<p>For this setup, we will use the University of Geneva’s <a class="reference internal" href="../glossary.html#term-NAS"><span class="xref std std-term">NAS</span></a> storage service to store data. Sone of the advantages of using NAS storage include:
+- High storage capacity
+- On demand storage expansion
+- Fast data access
+- Automatic data backup and redundancy</p>
+<p>To use the NAS storage, you can use an existing storage location or create a new one. You can ask for a new storage location by opening a ticket on the <span class="xref std std-ref">unige-digitalworkspace</span> page: <strong>NASac - Storage space for research data</strong>. At the time of writing, the cost of NAS storage is 75 CHF per TB per year, with the first 1TB being free. Some faculties may contribute to the cost of storage.</p>
+<p>The following parameters related to the NAS storage will be needed for the setup:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[NAS_URL]</span></code>: the URL of the NAS storage.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[ISIS_ID]</span></code>: your ISIS ID, which is used for authentication and access control of UNIGE services.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[ISIS_PASSWORD]</span></code>: your ISIS password, which is used for authentication and access control of UNIGE services.</p></li>
 </ul>
-</li>
+</section>
+<section id="setting-up-the-remote-machine">
+<h2>Setting up the remote machine<a class="headerlink" href="#setting-up-the-remote-machine" title="Link to this heading">🔗</a></h2>
+<p>For this setup, we will use a remote machine to manage interaction with <a class="reference internal" href="../glossary.html#term-NAS"><span class="xref std std-term">NAS</span></a>. This can be a <a class="reference internal" href="../glossary.html#term-VM"><span class="xref std std-term">VM</span></a> or a physical machine that has access to the NAS storage. The remote machine will act as an intermediary between your local machine and the NAS, allowing you to manage your data and projects effectively.
+For maximum compatibility, we recommend using a Linux-based remote machine, as it provides better support for the tools and workflows we will be using.</p>
+<section id="vm-setup">
+<h3>VM setup<a class="headerlink" href="#vm-setup" title="Link to this heading">🔗</a></h3>
+<p>If you choose to use a <a class="reference internal" href="../glossary.html#term-VM"><span class="xref std std-term">VM</span></a>, you can request one from the University of Geneva’s IT services by opening a ticket on the <span class="xref std std-ref">unige-digitalworkspace</span> page. <strong>Infrastructure - Hosting as a Service : Submit a request</strong> <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> <strong>IaaS - virtual server hosting (Linux, Windows)</strong> <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> <strong>Create</strong> . We recommend to select a Linux-based operating system for the VM, such as Ubuntu or CentOS. The cost of a VM depends on the resources allocated to it, such as CPU, RAM, and storage. The smallest VM configuration (1 vCPU, 1 GB RAM, 50 GB storage) should be sufficient for most use cases and costs around 37 CHF / year.</p>
+<p>The following parameters related to the VM will be needed for the setup:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[VM_IP]</span></code>: the IP address of the VM, which is used to connect to the VM remotely.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[VM_USERNAME]</span></code>: the username for the VM, which is used for authentication when connecting to the VM remotely.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[VM_PASSWORD]</span></code>: the password for the VM, which is used for authentication when connecting to the VM remotely.</p></li>
 </ul>
+</section>
+<section id="mounting-nas-on-the-remote-machine">
+<h3>Mounting NAS on the remote machine.<a class="headerlink" href="#mounting-nas-on-the-remote-machine" title="Link to this heading">🔗</a></h3>
+<p>Instal required packages for mounting NAS on the remote machine:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>cifs-utils<span class="w"> </span>psmisc
+</pre></div>
 </div>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">~/credentials</span></code> file on the remote machine with the following content:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="err">user</span><span class="kc">na</span><span class="err">me=</span><span class="p">[</span><span class="err">ISIS_ID</span><span class="p">]</span>
+<span class="err">password=</span><span class="p">[</span><span class="err">ISIS_PASSWORD</span><span class="p">]</span>
+<span class="err">domai</span><span class="kc">n</span><span class="err">=ISIS</span>
+</pre></div>
+</div>
+<p>To make sure that the credentials file is secure, you can set the permissions of the file to be readable only by the root user:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/credentials
+sudo<span class="w"> </span>chown<span class="w"> </span>root:root<span class="w"> </span>credentials
+</pre></div>
+</div>
+<p>Then mount the NAS storage on the remote machine using the following command where you replace <code class="docutils literal notranslate"><span class="pre">[NAS_URL]</span></code> with the URL of the NAS storage and <code class="docutils literal notranslate"><span class="pre">[DESTINATION_PATH]</span></code> with the path where you want to mount the NAS storage on the remote machine:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>cifs<span class="w"> </span>-o<span class="w"> </span><span class="nv">credentials</span><span class="o">=</span>~/credentials,uid<span class="o">=</span><span class="k">$(</span>id<span class="w"> </span>-u<span class="k">)</span>,gid<span class="o">=</span><span class="k">$(</span>id<span class="w"> </span>-g<span class="k">)</span>,file_mode<span class="o">=</span><span class="m">0664</span>,dir_mode<span class="o">=</span><span class="m">0775</span><span class="w"> </span>//<span class="o">[</span>NAS_URL<span class="o">]</span><span class="w"> </span><span class="o">[</span>DESTINATION_PATH<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="gitlab-setup">
+<h2>Gitlab setup<a class="headerlink" href="#gitlab-setup" title="Link to this heading">🔗</a></h2>
+</section>
 </section>
 
 
@@ -427,6 +478,31 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nas-storage">NAS storage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-remote-machine">Setting up the remote machine</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vm-setup">VM setup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mounting-nas-on-the-remote-machine">Mounting NAS on the remote machine.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gitlab-setup">Gitlab setup</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
