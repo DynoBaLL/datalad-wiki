@@ -27,30 +27,31 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=88d822bf" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../_static/scripts/fontawesome.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
     <script src="../_static/documentation_options.js?v=01f34227"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/gitlab_nas';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
@@ -81,7 +82,9 @@
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -402,17 +405,24 @@
   <section id="gitlab-nas-setup">
 <h1>Gitlab + NAS setup<a class="headerlink" href="#gitlab-nas-setup" title="Link to this heading">🔗</a></h1>
 <p>For this setup, we will use the University of Geneva’s NAS storage service to store data and the University of Geneva’s GitLab instance for version control, metadata storage, and collaboration. This setup allows you to manage your data and projects effectively while leveraging the capabilities of both NAS and GitLab.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This project setup may seems complex at first, but it has been designed the reduce the technical complexity for the end user (researcher). Once the project is set up, a single  <code class="docutils literal notranslate"><span class="pre">clone</span></code> command could be used by all users to access the project, without the need to worry about the operating system, path logic, siblings configuration, or publish dependencies.</p>
+</div>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">🔗</a></h2>
 <ul class="simple">
 <li><p>[ ] <a class="reference internal" href="install.html#uv"><span class="std std-ref">Install uv</span></a></p></li>
 <li><p>[ ] <a class="reference internal" href="install.html#ssh-keys"><span class="std std-ref">Create SSH keys</span></a></p></li>
-<li><p>[ ] <a class="reference internal" href="install.html#gitlab"><span class="std std-ref">Setup GitLab</span></a></p></li>
 <li><p>[ ] <a class="reference internal" href="install.html#nas"><span class="std std-ref">Setup NAS</span></a></p></li>
+<li><p>[ ] <a class="reference internal" href="install.html#gitlab"><span class="std std-ref">Setup GitLab</span></a></p></li>
+<li><p>[ ] <a class="reference internal" href="install.html#gitlab-python"><span class="std std-ref">Setup GitLab-python</span></a></p></li>
 </ul>
 </section>
+<section id="project-setup">
+<h2>Project setup<a class="headerlink" href="#project-setup" title="Link to this heading">🔗</a></h2>
 <section id="nas-storage">
-<h2>NAS storage<a class="headerlink" href="#nas-storage" title="Link to this heading">🔗</a></h2>
+<h3>NAS storage<a class="headerlink" href="#nas-storage" title="Link to this heading">🔗</a></h3>
 <p>For this setup, we will use the University of Geneva’s <a class="reference internal" href="../glossary.html#term-NAS"><span class="xref std std-term">NAS</span></a> storage service to store data. Sone of the advantages of using NAS storage include:
 - High storage capacity
 - On demand storage expansion
@@ -422,49 +432,345 @@
 <p>The following parameters related to the NAS storage will be needed for the setup:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">[NAS_URL]</span></code>: the URL of the NAS storage.</p></li>
+</ul>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="0" for="sd-tab-item-0">
+template</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="no">[NAS_URL]</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="1" for="sd-tab-item-1">
+example</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">//</span><span class="n">nasac-m2</span><span class="p">.</span><span class="n">unige</span><span class="p">.</span><span class="n">ch</span><span class="p">/</span><span class="n">nas-datalad</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">[ISIS_ID]</span></code>: your ISIS ID, which is used for authentication and access control of UNIGE services.</p></li>
+</ul>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="0" for="sd-tab-item-2">
+template</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="no">[ISIS_ID]</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="1" for="sd-tab-item-3">
+example</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">vm</span><span class="p">.</span><span class="n">unige</span><span class="p">.</span><span class="n">ch</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">[ISIS_PASSWORD]</span></code>: your ISIS password, which is used for authentication and access control of UNIGE services.</p></li>
 </ul>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="0" for="sd-tab-item-4">
+template</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="no">[ISIS_PASSWORD]</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="1" for="sd-tab-item-5">
+example</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">an</span> <span class="n">ISIS</span> <span class="n">very</span> <span class="n">strong</span> <span class="n">password</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
-<section id="setting-up-the-remote-machine">
-<h2>Setting up the remote machine<a class="headerlink" href="#setting-up-the-remote-machine" title="Link to this heading">🔗</a></h2>
+<section id="remote-machine">
+<h3>Remote machine<a class="headerlink" href="#remote-machine" title="Link to this heading">🔗</a></h3>
 <p>For this setup, we will use a remote machine to manage interaction with <a class="reference internal" href="../glossary.html#term-NAS"><span class="xref std std-term">NAS</span></a>. This can be a <a class="reference internal" href="../glossary.html#term-VM"><span class="xref std std-term">VM</span></a> or a physical machine that has access to the NAS storage. The remote machine will act as an intermediary between your local machine and the NAS, allowing you to manage your data and projects effectively.
 For maximum compatibility, we recommend using a Linux-based remote machine, as it provides better support for the tools and workflows we will be using.</p>
 <section id="vm-setup">
-<h3>VM setup<a class="headerlink" href="#vm-setup" title="Link to this heading">🔗</a></h3>
+<h4>VM setup<a class="headerlink" href="#vm-setup" title="Link to this heading">🔗</a></h4>
 <p>If you choose to use a <a class="reference internal" href="../glossary.html#term-VM"><span class="xref std std-term">VM</span></a>, you can request one from the University of Geneva’s IT services by opening a ticket on the <span class="xref std std-ref">unige-digitalworkspace</span> page. <strong>Infrastructure - Hosting as a Service : Submit a request</strong> <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> <strong>IaaS - virtual server hosting (Linux, Windows)</strong> <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> <strong>Create</strong> . We recommend to select a Linux-based operating system for the VM, such as Ubuntu or CentOS. The cost of a VM depends on the resources allocated to it, such as CPU, RAM, and storage. The smallest VM configuration (1 vCPU, 1 GB RAM, 50 GB storage) should be sufficient for most use cases and costs around 37 CHF / year.</p>
 <p>The following parameters related to the VM will be needed for the setup:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[VM_IP]</span></code>: the IP address of the VM, which is used to connect to the VM remotely.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[VM_USERNAME]</span></code>: the username for the VM, which is used for authentication when connecting to the VM remotely.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[VM_PASSWORD]</span></code>: the password for the VM, which is used for authentication when connecting to the VM remotely.</p></li>
+<li><p>the URL / IP address of the VM, which is used to connect to the VM remotely:</p></li>
 </ul>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="0" for="sd-tab-item-6">
+template</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="no">[VM_URL]</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="1" for="sd-tab-item-7">
+example</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">vm</span><span class="p">.</span><span class="n">unige</span><span class="p">.</span><span class="n">ch</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>the username for the VM, which is used for authentication when connecting to the VM remotely:</p></li>
+</ul>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="0" for="sd-tab-item-8">
+template</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="no">[VM_USERNAME]</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="1" for="sd-tab-item-9">
+example</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">victor</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>the password for the VM, which is used for authentication when connecting to the VM remotely:</p></li>
+</ul>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="0" for="sd-tab-item-10">
+template</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="no">[VM_PASSWORD]</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="1" for="sd-tab-item-11">
+example</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="n">VM</span> <span class="n">very</span> <span class="n">strong</span> <span class="n">password</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="mounting-nas-on-the-remote-machine">
-<h3>Mounting NAS on the remote machine.<a class="headerlink" href="#mounting-nas-on-the-remote-machine" title="Link to this heading">🔗</a></h3>
+<h4>Mounting NAS on the remote machine.<a class="headerlink" href="#mounting-nas-on-the-remote-machine" title="Link to this heading">🔗</a></h4>
 <p>Instal required packages for mounting NAS on the remote machine:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>cifs-utils<span class="w"> </span>psmisc
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">cifs-utils</span> <span class="n">psmisc</span>
 </pre></div>
 </div>
 <p>Create a <code class="docutils literal notranslate"><span class="pre">~/credentials</span></code> file on the remote machine with the following content:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="err">user</span><span class="kc">na</span><span class="err">me=</span><span class="p">[</span><span class="err">ISIS_ID</span><span class="p">]</span>
-<span class="err">password=</span><span class="p">[</span><span class="err">ISIS_PASSWORD</span><span class="p">]</span>
-<span class="err">domai</span><span class="kc">n</span><span class="err">=ISIS</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">username=[ISIS_ID]</span>
+<span class="l l-Scalar l-Scalar-Plain">password=[ISIS_PASSWORD]</span>
+<span class="l l-Scalar l-Scalar-Plain">domain=ISIS</span>
 </pre></div>
 </div>
 <p>To make sure that the credentials file is secure, you can set the permissions of the file to be readable only by the root user:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/credentials
-sudo<span class="w"> </span>chown<span class="w"> </span>root:root<span class="w"> </span>credentials
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">chmod</span> <span class="n">600</span> <span class="p">~/</span><span class="n">credentials</span>
+<span class="n">sudo</span> <span class="n">chown</span> <span class="n">root</span><span class="p">:</span><span class="n">root</span> <span class="n">credentials</span>
 </pre></div>
 </div>
-<p>Then mount the NAS storage on the remote machine using the following command where you replace <code class="docutils literal notranslate"><span class="pre">[NAS_URL]</span></code> with the URL of the NAS storage and <code class="docutils literal notranslate"><span class="pre">[DESTINATION_PATH]</span></code> with the path where you want to mount the NAS storage on the remote machine:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>cifs<span class="w"> </span>-o<span class="w"> </span><span class="nv">credentials</span><span class="o">=</span>~/credentials,uid<span class="o">=</span><span class="k">$(</span>id<span class="w"> </span>-u<span class="k">)</span>,gid<span class="o">=</span><span class="k">$(</span>id<span class="w"> </span>-g<span class="k">)</span>,file_mode<span class="o">=</span><span class="m">0664</span>,dir_mode<span class="o">=</span><span class="m">0775</span><span class="w"> </span>//<span class="o">[</span>NAS_URL<span class="o">]</span><span class="w"> </span><span class="o">[</span>DESTINATION_PATH<span class="o">]</span>
+<p>The following parameters related to the NAS storage will be needed for the setup:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[DESTINATION_PATH]</span></code>: the path where you want to mount the NAS storage on the remote machine.</p></li>
+</ul>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="0" for="sd-tab-item-12">
+template</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="no">[DESTINATION_PATH]</span>
 </pre></div>
 </div>
-</section>
+</div>
+<input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="1" for="sd-tab-item-13">
+example</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">/</span><span class="n">mnt</span><span class="p">/</span><span class="n">nas-datalad</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then mount the NAS storage on the remote machine using the following command:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="0" for="sd-tab-item-14">
+template</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="nb">mount </span><span class="n">-t</span> <span class="n">cifs</span> <span class="n">-o</span> <span class="n">credentials</span><span class="p">=~/</span><span class="n">credentials</span><span class="p">,</span><span class="n">uid</span><span class="p">=$(</span><span class="n">id</span> <span class="n">-u</span><span class="p">),</span><span class="n">gid</span><span class="p">=$(</span><span class="n">id</span> <span class="n">-g</span><span class="p">),</span><span class="n">file_mode</span><span class="p">=</span><span class="n">0664</span><span class="p">,</span><span class="n">dir_mode</span><span class="p">=</span><span class="n">0775</span> <span class="no">[NAS_URL] [DESTINATION_PATH]</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-15" name="sd-tab-set-7" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="1" for="sd-tab-item-15">
+example</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="nb">mount </span><span class="n">-t</span> <span class="n">cifs</span> <span class="n">-o</span> <span class="n">credentials</span><span class="p">=~/</span><span class="n">credentials</span><span class="p">,</span><span class="n">uid</span><span class="p">=$(</span><span class="n">id</span> <span class="n">-u</span><span class="p">),</span><span class="n">gid</span><span class="p">=$(</span><span class="n">id</span> <span class="n">-g</span><span class="p">),</span><span class="n">file_mode</span><span class="p">=</span><span class="n">0664</span><span class="p">,</span><span class="n">dir_mode</span><span class="p">=</span><span class="n">0775</span> <span class="p">//</span><span class="n">nasac-m2</span><span class="p">.</span><span class="n">unige</span><span class="p">.</span><span class="n">ch</span><span class="p">/</span><span class="n">nas-datalad</span> <span class="p">/</span><span class="n">mnt</span><span class="p">/</span><span class="n">nas-datalad</span>
+</pre></div>
+</div>
+</div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">[Optional] Mounting NAS on the remote machine automatically after reboot.</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">To mount the NAS automatically after reboot, add an entry to <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code>:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-8" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="0" for="sd-tab-item-16">
+template</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="no">[NAS_URL] [DESTINATION_PATH]</span> <span class="n">cifs</span> <span class="n">credentials</span><span class="p">=</span><span class="no">[CREDENTIALS_PATH]</span><span class="p">,</span><span class="n">uid</span><span class="p">=</span><span class="no">[VM_UID]</span><span class="p">,</span><span class="n">gid</span><span class="p">=</span><span class="no">[VM_GID]</span><span class="p">,</span><span class="n">file_mode</span><span class="p">=</span><span class="n">0664</span><span class="p">,</span><span class="n">dir_mode</span><span class="p">=</span><span class="n">0775</span><span class="p">,</span><span class="n">nofail</span><span class="p">,</span><span class="n">x-systemd</span><span class="p">.</span><span class="n">automount</span> <span class="n">0</span> <span class="n">0</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-17" name="sd-tab-set-8" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="1" for="sd-tab-item-17">
+example</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">//</span><span class="n">nasac-m2</span><span class="p">.</span><span class="n">unige</span><span class="p">.</span><span class="n">ch</span><span class="p">/</span><span class="n">nas-datalad</span> <span class="p">/</span><span class="n">mnt</span><span class="p">/</span><span class="n">nas-datalad</span> <span class="n">cifs</span> <span class="n">credentials</span><span class="p">=/</span><span class="n">home</span><span class="p">/</span><span class="n">victor</span><span class="p">/</span><span class="n">credentials</span><span class="p">,</span><span class="n">uid</span><span class="p">=</span><span class="n">1000</span><span class="p">,</span><span class="n">gid</span><span class="p">=</span><span class="n">1000</span><span class="p">,</span><span class="n">file_mode</span><span class="p">=</span><span class="n">0664</span><span class="p">,</span><span class="n">dir_mode</span><span class="p">=</span><span class="n">0775</span><span class="p">,</span><span class="n">nofail</span><span class="p">,</span><span class="n">x-systemd</span><span class="p">.</span><span class="n">automount</span> <span class="n">0</span> <span class="n">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p class="sd-card-text">You can append this entry to <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code> with:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-18" name="sd-tab-set-9" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="0" for="sd-tab-item-18">
+template</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo </span><span class="s2">&quot;//[NAS_URL] [DESTINATION_PATH] cifs credentials=[CREDENTIALS_PATH],uid=[VM_UID],gid=[VM_GID],file_mode=0664,dir_mode=0775,nofail,x-systemd.automount 0 0&quot;</span> <span class="p">|</span> <span class="n">sudo</span> <span class="nb">tee </span><span class="n">-a</span> <span class="p">/</span><span class="n">etc</span><span class="p">/</span><span class="n">fstab</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-19" name="sd-tab-set-9" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="1" for="sd-tab-item-19">
+example</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo </span><span class="s2">&quot;//nasac-m2.unige.ch/nas-datalad /mnt/nas-datalad cifs credentials=/home/victor/credentials,uid=1000,gid=1000,file_mode=0664,dir_mode=0775,nofail,x-systemd.automount 0 0&quot;</span> <span class="p">|</span> <span class="n">sudo</span> <span class="nb">tee </span><span class="n">-a</span> <span class="p">/</span><span class="n">etc</span><span class="p">/</span><span class="n">fstab</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p class="sd-card-text">Then validate the entry without rebooting:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="nb">mount </span><span class="n">-a</span>
+</pre></div>
+</div>
+</div>
+</details></section>
 </section>
 <section id="gitlab-setup">
-<h2>Gitlab setup<a class="headerlink" href="#gitlab-setup" title="Link to this heading">🔗</a></h2>
+<h3>Gitlab setup<a class="headerlink" href="#gitlab-setup" title="Link to this heading">🔗</a></h3>
+</section>
+<section id="datalad-setup">
+<h3>Datalad setup<a class="headerlink" href="#datalad-setup" title="Link to this heading">🔗</a></h3>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-20" name="sd-tab-set-10" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="0" for="sd-tab-item-20">
+template</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">datalad</span> <span class="n">create</span> <span class="n">-c</span> <span class="n">text2git</span> <span class="no">[PROJECT_NAME]</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-21" name="sd-tab-set-10" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="1" for="sd-tab-item-21">
+example</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">datalad</span> <span class="n">create</span> <span class="n">-c</span> <span class="n">text2git</span> <span class="n">project_datalad</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="add-nas-sibling">
+<h4>Add NAS sibling<a class="headerlink" href="#add-nas-sibling" title="Link to this heading">🔗</a></h4>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-22" name="sd-tab-set-11" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="0" for="sd-tab-item-22">
+template</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">datalad</span> <span class="n">-l</span> <span class="n">create-sibling-ria</span> <span class="n">ria</span><span class="p">+</span><span class="n">ssh</span><span class="p">://</span><span class="no">[VM_USERNAME]</span><span class="p">@</span><span class="no">[VM_URL]</span><span class="p">/</span><span class="no">[DESTINATION_PATH]</span> <span class="n">-s</span> <span class="n">RIA</span> <span class="p">-</span><span class="n">-new-store-ok</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-23" name="sd-tab-set-11" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="1" for="sd-tab-item-23">
+example</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">datalad</span> <span class="n">-l</span> <span class="n">create-sibling-ria</span> <span class="n">ria</span><span class="p">+</span><span class="n">ssh</span><span class="p">://</span><span class="n">victor</span><span class="nv">@vm</span><span class="p">.</span><span class="n">unige</span><span class="p">.</span><span class="n">ch</span><span class="p">:/</span><span class="n">mnt</span><span class="p">/</span><span class="n">nas-datalad</span> <span class="n">-s</span> <span class="n">RIA</span> <span class="p">-</span><span class="n">-new-store-ok</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Given that GitLab will be used for version control and metadata storage,  the <code class="docutils literal notranslate"><span class="pre">--storage-sibling=only</span></code> flag could be used.
+Since backups of the NAS storage are automatically created and the storage needed for version control history is minimal, we recommend to not use this flag to ensure that the version control history synced to the data is  also backed up.</p>
+</div>
+</section>
+<section id="add-gitlab-sibling">
+<h4>Add Gitlab sibling<a class="headerlink" href="#add-gitlab-sibling" title="Link to this heading">🔗</a></h4>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-24" name="sd-tab-set-12" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="0" for="sd-tab-item-24">
+template</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">datalad</span> <span class="n">create-sibling-gitlab</span> <span class="p">-</span><span class="n">-access</span> <span class="n">ssh</span> <span class="n">-s</span> <span class="n">origin</span> <span class="p">-</span><span class="n">-project</span> <span class="no">[GITLAB_GROUP]</span><span class="p">/</span><span class="no">[PROJECT_NAME]</span> <span class="p">-</span><span class="n">-site</span> <span class="no">[GITLAB_SITE]</span> <span class="p">-</span><span class="n">-layout</span> <span class="n">flat</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-25" name="sd-tab-set-12" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="1" for="sd-tab-item-25">
+example</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">datalad</span> <span class="n">create-sibling-gitlab</span> <span class="p">-</span><span class="n">-access</span> <span class="n">ssh</span> <span class="n">-s</span> <span class="n">origin</span> <span class="p">-</span><span class="n">-project</span> <span class="n">gitlab-group</span><span class="p">/</span><span class="n">my_datalad_project</span> <span class="p">-</span><span class="n">-site</span> <span class="n">unige</span> <span class="p">-</span><span class="n">-layout</span> <span class="n">flat</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">origin</span></code> flag specifies the name of the sibling.
+When users clone the repository, datalad will always set up the remote named to <code class="docutils literal notranslate"><span class="pre">origin</span></code> (whatever the name used during project creation). We recommend to use the name <code class="docutils literal notranslate"><span class="pre">origin</span></code>  during project configuration to ensure consistency.</p>
+</div>
+</section>
+<section id="add-publish-dependency">
+<h4>Add publish dependency<a class="headerlink" href="#add-publish-dependency" title="Link to this heading">🔗</a></h4>
+<p>To ensure that the version control history is always synced to the data, we will set up a publish dependency between the GitLab sibling and the NAS sibling. This means that when you publish to GitLab, the data will also be published to the NAS storage, without the need to publish to the NAS sibling separately.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">datalad</span> <span class="n">siblings</span> <span class="n">configure</span> <span class="n">-s</span> <span class="n">origin</span> <span class="p">-</span><span class="n">-publish-depends</span> <span class="n">RIA</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="project-use">
+<h3>Project use<a class="headerlink" href="#project-use" title="Link to this heading">🔗</a></h3>
+<section id="access-control">
+<h4>Access control<a class="headerlink" href="#access-control" title="Link to this heading">🔗</a></h4>
+<section id="gitlab">
+<h5>Gitlab<a class="headerlink" href="#gitlab" title="Link to this heading">🔗</a></h5>
+<p>The users must have accees to the GitLab repository. You can add new memebers to the GitLab project by going to the project page on GitLab, clicking on “Settings” <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> “Members”, and then adding the user’s GitLab username or email address.
+<code class="docutils literal notranslate"><span class="pre">https://[GITLAB_URL]/[GITLAB_GROUP]/[PROJECT_NAME]/project_members</span></code></p>
+</section>
+<section id="vm">
+<h5>VM<a class="headerlink" href="#vm" title="Link to this heading">🔗</a></h5>
+<p>The user must also have access to the remote machine. Adding the user’s public ssh key to the <code class="docutils literal notranslate"><span class="pre">~/.ssh/authorized_keys</span></code> file on the remote machine will grant them access to the remote machine and remote storage.</p>
+</section>
+</section>
+<section id="clone">
+<h4>Clone<a class="headerlink" href="#clone" title="Link to this heading">🔗</a></h4>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-26" name="sd-tab-set-13" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="0" for="sd-tab-item-26">
+template</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">datalad</span> <span class="n">install</span> <span class="n">git</span><span class="p">@</span><span class="no">[GITLAB_URL]</span><span class="p">:</span><span class="no">[GITLAB_GROUP]</span><span class="p">/</span><span class="no">[PROJECT_NAME]</span><span class="p">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-27" name="sd-tab-set-13" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="1" for="sd-tab-item-27">
+example</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">datalad</span> <span class="n">install</span> <span class="n">git</span><span class="nv">@gitlab</span><span class="p">.</span><span class="n">unige</span><span class="p">.</span><span class="n">ch</span><span class="p">:</span><span class="n">gitlab-group</span><span class="p">/</span><span class="n">my_datalad_project</span><span class="p">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="limitations">
+<h2>Limitations<a class="headerlink" href="#limitations" title="Link to this heading">🔗</a></h2>
+<p>There are some limitations to this setup that users should be aware of:</p>
+<ul class="simple">
+<li><p>ssh keys: users need to have their ssh keys added to the VM to be able to access the NAS storage. This might lead to some administrative overhead, especially for projects with many users or users using multiple machines ( i.e. <a class="reference internal" href="../glossary.html#term-HPC"><span class="xref std std-term">HPC</span></a>).
+This issue might be mitigated in the future by using Active Directory groups / ISIS ssh-key system to manage access to the <code class="docutils literal notranslate"><span class="pre">VM</span></code></p></li>
+</ul>
 </section>
 </section>
 
@@ -492,13 +798,32 @@ sudo<span class="w"> </span>chown<span class="w"> </span>root:root<span class="w
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nas-storage">NAS storage</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-remote-machine">Setting up the remote machine</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vm-setup">VM setup</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mounting-nas-on-the-remote-machine">Mounting NAS on the remote machine.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-setup">Project setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nas-storage">NAS storage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remote-machine">Remote machine</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vm-setup">VM setup</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mounting-nas-on-the-remote-machine">Mounting NAS on the remote machine.</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gitlab-setup">Gitlab setup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gitlab-setup">Gitlab setup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datalad-setup">Datalad setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#add-nas-sibling">Add NAS sibling</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#add-gitlab-sibling">Add Gitlab sibling</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#add-publish-dependency">Add publish dependency</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-use">Project use</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#access-control">Access control</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gitlab">Gitlab</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#vm">VM</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#clone">Clone</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations">Limitations</a></li>
 </ul>
   </nav></div>
 
@@ -515,8 +840,8 @@ sudo<span class="w"> </span>chown<span class="w"> </span>root:root<span class="w
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">

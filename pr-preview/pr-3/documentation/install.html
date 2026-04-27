@@ -27,30 +27,31 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=7f76b32a3354e82990f2" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=88d822bf" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../_static/scripts/fontawesome.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
     <script src="../_static/documentation_options.js?v=01f34227"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/install';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
@@ -81,7 +82,9 @@
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -491,9 +494,25 @@ Windows</label><div class="sd-tab-content docutils">
 <p>SSH keys are sensitive and should be kept secure. Do not share your private key with anyone, and consider using a passphrase for added security. Make sure to never commit your private key to any repository or share it in any public space.</p>
 </div>
 </section>
+<section id="nas">
+<h2>NAS<a class="headerlink" href="#nas" title="Link to this heading">🔗</a></h2>
 </section>
 <section id="gitlab">
-<h1>Gitlab<a class="headerlink" href="#gitlab" title="Link to this heading">🔗</a></h1>
+<h2>Gitlab<a class="headerlink" href="#gitlab" title="Link to this heading">🔗</a></h2>
+</section>
+<section id="gitlab-python">
+<h2>Gitlab-python<a class="headerlink" href="#gitlab-python" title="Link to this heading">🔗</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">global</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">default = gitlab</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[unige]</span>
+<span class="l l-Scalar l-Scalar-Plain">url = https://gitlab.unige.ch/</span>
+<span class="l l-Scalar l-Scalar-Plain">private_token =</span><span class="w"> </span><span class="c1">###</span>
+<span class="l l-Scalar l-Scalar-Plain">ssl_verify = true</span>
+<span class="l l-Scalar l-Scalar-Plain">timeout = 5</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -519,15 +538,13 @@ Windows</label><div class="sd-tab-content docutils">
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Install</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uv">uv</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datalad">Datalad</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ssh-keys">SSH keys</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nas">NAS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gitlab">Gitlab</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gitlab-python">Gitlab-python</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gitlab">Gitlab</a></li>
-</ul>
-
   </nav></div>
 
 </div></div>
@@ -543,8 +560,8 @@ Windows</label><div class="sd-tab-content docutils">
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=7f76b32a3354e82990f2"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=7f76b32a3354e82990f2"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
