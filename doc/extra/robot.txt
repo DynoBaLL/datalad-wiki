@@ -1,0 +1,3 @@
+User-agent: *
+
+Sitemap: https://dynoball.github.io/datalad-wiki/sitemap.xml
