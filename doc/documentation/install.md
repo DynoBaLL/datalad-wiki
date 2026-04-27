@@ -97,4 +97,22 @@ The new ssh key will be generated and saved in the default location (usually `~/
 SSH keys are sensitive and should be kept secure. Do not share your private key with anyone, and consider using a passphrase for added security. Make sure to never commit your private key to any repository or share it in any public space.
 ```
 
-# Gitlab
+## NAS
+
+
+## Gitlab
+
+
+## Gitlab-python
+
+
+```yaml
+[global]
+default = gitlab
+
+[unige]
+url = https://gitlab.unige.ch/
+private_token = ###
+ssl_verify = true
+timeout = 5
+```
