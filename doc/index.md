@@ -7,8 +7,7 @@ myst:
     }
 ---
 
-```{eval-rst}
-.. include:: ./links.inc
+```{include} ./links.md
 ```
 
 # Datalad wiki
@@ -16,6 +15,7 @@ myst:
 ```{toctree}
 :maxdepth: 2
 :hidden:
+about
 documentation/index
 glossary
 generated/tutorials/index.rst

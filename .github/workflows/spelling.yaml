@@ -1,0 +1,29 @@
+name: doc
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number }}-${{ github.event.ref }}
+  cancel-in-progress: true
+on:  # yamllint disable-line rule:truthy
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Linux dependencies
+        run: sudo apt update && sudo apt install -y optipng libenchant-2-2 aspell aspell-en
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: 3.12
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v7
+      - name: Install documentation dependencies
+        run: uv pip install --quiet --system .[doc]
+      - name: Check spelling
+        run: sphinx-build -d ./doc/_build/doctrees -b spelling doc ./doc/_build_spelling -W --keep-going
