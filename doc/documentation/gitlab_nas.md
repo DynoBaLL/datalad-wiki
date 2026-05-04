@@ -1,5 +1,15 @@
 ```{include} ./links.md
 ```
+
+```{figure} ../_static/img/scenario_01.png
+---
+width: 100%
+alt: Gitlab + NAS setup
+name: gitlab_nas_setup
+---
+The Gitlab + NAS setup  setup where git is used for version control and metadata storage on GitLab,  ang git-annex is used for data management on NAS storage. A virtual machine is used to manage seemless interaction between all components.
+```
+
 # Gitlab + NAS setup
 
 For this setup, we will use the University of Geneva's NAS storage service to store data and the University of Geneva's GitLab instance for version control, metadata storage, and collaboration. This setup allows you to manage your data and projects effectively while leveraging the capabilities of both NAS and GitLab.
