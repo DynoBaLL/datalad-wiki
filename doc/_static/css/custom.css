@@ -1,0 +1,40 @@
+/* Project-specific Sphinx overrides. Intentionally minimal. */
+
+.glossary-logo {
+	color: var(--pst-color-primary);
+	display: inline-block;
+	margin-right: 0.4rem;
+	vertical-align: -0.08em;
+}
+
+.glossary-logo-image {
+	display: inline-block;
+	height: 1em;
+	margin-right: 0.4rem;
+	vertical-align: -0.12em;
+	width: auto;
+}
+
+.footer-logos {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 0.25rem 0;
+}
+
+.footer-logos a {
+	display: flex;
+	align-items: center;
+}
+
+.footer-logos img {
+	height: 40px;
+	width: auto;
+	opacity: 0.85;
+	transition: opacity 0.2s;
+}
+
+.footer-logos img:hover {
+	opacity: 1;
+}

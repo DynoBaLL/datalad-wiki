@@ -51,8 +51,9 @@ extensions = [
     "sphinx_design",
     "sphinx_gallery.gen_gallery",
     "sphinx_issues",
+    "sphinxcontrib.spelling",
+    "sphinx_sitemap",
 ]
-
 nb_execution_mode = "auto"
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "**.ipynb_checkpoints", "spelling_wordlist.txt"]
 templates_path = ["_templates"]
@@ -62,6 +63,7 @@ myst_enable_extensions = [
     "colon_fence",  #  ```{include}
 
 ]
+myst_heading_anchors = 2
 
 # Sphinx will warn about all references where the target cannot be found.
 nitpicky = True
@@ -76,17 +78,14 @@ default_role = "py:obj"
 suppress_warnings = ["config.cache"]
 
 # -- options for HTML output -----------------------------------------------------------
-html_css_files = [
-    "css/style.css",
-]
 html_favicon = "_static/icons/favicon.svg"
 html_logo = "_static/icons/logo.png"
 html_permalinks_icon = "🔗"
-html_show_sphinx = False
+html_show_sourcelink = False
 html_static_path = ["_static"]
 html_theme = 'pydata_sphinx_theme'
 html_title = project
-
+html_baseurl = "https://dynoball.github.io/datalad-wiki/"
 
 # https://pydata-sphinx-theme.readthedocs.io/en/v0.7.2/user_guide/configuring.html
 html_theme_options = {
@@ -97,10 +96,16 @@ html_theme_options = {
             "icon": "fa-brands fa-github",
         },
     ],
+    "external_links": [{"name": "Neuroling", "url": "https://dynoball.org/"}],
     "header_links_before_dropdown": 10,
     "search_bar_text": "Search this site...",
     "show_prev_next": False,
+    "footer_start": ["copyright"],
+    "footer_center": ["footer-content"],
+    "footer_end": ["sphinx-version"],
 }
+
+html_sidebars = {"**": []}
 
 # -- autosummary -----------------------------------------------------------------------
 autosummary_generate = True
@@ -179,7 +184,7 @@ bibtex_bibfiles = ["./references.bib"]
 html_static_path = ['_static']
 def setup(app):
     """Add custom CSS file."""
-    app.add_css_file('custom.css')
+    app.add_css_file('css/custom.css')
 
 def linkcode_resolve(domain: str, info: dict[str, str]) -> str | None:
     """Determine the URL corresponding to a Python object.
