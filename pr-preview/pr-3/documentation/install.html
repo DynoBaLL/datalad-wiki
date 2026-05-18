@@ -499,9 +499,19 @@ Windows</label><div class="sd-tab-content docutils">
 </section>
 <section id="gitlab">
 <h2>Gitlab<a class="headerlink" href="#gitlab" title="Link to this heading">🔗</a></h2>
+<p>To use <a class="reference internal" href="../glossary.html#term-gitlab"><span class="xref std std-term">gitlab</span></a> with <a class="reference internal" href="../glossary.html#term-datalad"><span class="xref std std-term">datalad</span></a>, you need to set up an SSH key and add it to your Gitlab account. This allows you to authenticate securely when pushing and pulling repositories.
+To add your SSH key to Gitlab, go to your Gitlab account settings (https://gitlab.unige.ch/-/user_settings/ssh_keys) and click on “Add new key”.
+You can copy the contents of your public SSH key (usually found in <code class="docutils literal notranslate"><span class="pre">~/.ssh/id_rsa.pub</span></code>) and paste it into the “Key” field. Give it a descriptive title and click “Add key” to save it.</p>
 </section>
 <section id="gitlab-python">
 <h2>Gitlab-python<a class="headerlink" href="#gitlab-python" title="Link to this heading">🔗</a></h2>
+<p>Gitlab-python is only needed if you want to create a new dataset on Gitlab using the <code class="docutils literal notranslate"><span class="pre">datalad</span> <span class="pre">create</span></code> command. It is not required for general use of datalad with Gitlab repositories.</p>
+<p>Gitlab-python is a Python library that provides an interface to interact with the Gitlab API. It allows you to automate tasks such as creating repositories, managing issues, and more. To use Gitlab-python, you need to configure it with your Gitlab instance and authentication token.</p>
+<div class="highlight-powerhell notranslate"><div class="highlight"><pre><span></span>uv pip install gitlab-python
+</pre></div>
+</div>
+<p>To use <code class="docutils literal notranslate"><span class="pre">gitlab-python</span></code>, you need to generate a private token. Go to your Gitlab account settings, Personal access tokens (https://gitlab.unige.ch/-/user_settings/personal_access_tokens). Click on “Add new token”, add a name for the token, select the desired scopes (e.g., api), and click “Create personal access token”. Make sure to copy the generated token as it will not be shown again.</p>
+<p>Create a configuration file for Gitlab-python (e.g., <code class="docutils literal notranslate"><span class="pre">~/.python-gitlab.cfg</span></code>) with the following content, replacing the URL and private token with your own values:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">global</span><span class="p p-Indicator">]</span>
 <span class="l l-Scalar l-Scalar-Plain">default = gitlab</span>
 
@@ -512,6 +522,7 @@ Windows</label><div class="sd-tab-content docutils">
 <span class="l l-Scalar l-Scalar-Plain">timeout = 5</span>
 </pre></div>
 </div>
+<p>With this configuration, you can use Gitlab-python to interact with your Gitlab instance.</p>
 </section>
 </section>
 

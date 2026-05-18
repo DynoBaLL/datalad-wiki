@@ -355,6 +355,7 @@ datalad siblings configure -s origin --publish-depends RIA
 The users must have accees to the GitLab repository. You can add new memebers to the GitLab project by going to the project page on GitLab, clicking on "Settings" `>` "Members", and then adding the user's GitLab username or email address.
 `https://[GITLAB_URL]/[GITLAB_GROUP]/[PROJECT_NAME]/project_members`
 
+The user must also add their SSH key to their GitLab account to be able to authenticate when pushing and pulling from the repository. See the [SSH keys](install.md#ssh-keys) section for instructions on how to generate SSH keys and the [Gitlab](install.md#gitlab) section for instructions on how to add the SSH key to GitLab.
 
 ##### VM
 The user must also have access to the remote machine. Adding the user's public ssh key to the `~/.ssh/authorized_keys` file on the remote machine will grant them access to the remote machine and remote storage.
@@ -385,4 +386,7 @@ datalad install git@gitlab.unige.ch:gitlab-group/my_datalad_project.git
 There are some limitations to this setup that users should be aware of:
 
 - ssh keys: users need to have their ssh keys added to the VM to be able to access the NAS storage. This might lead to some administrative overhead, especially for projects with many users or users using multiple machines ( i.e. {term}`HPC`).
-This issue might be mitigated in the future by using Active Directory groups / ISIS ssh-key system to manage access to the `VM`
+This issue might be mitigated in the future by using Active Directory groups / ISIS ssh-key system to manage access to the `VM`.
+
+- `VM` cost: using a `VM` to manage the interaction with the `NAS` storage adds an additional cost to the project. This cost can be mitigated by using a shared `VM` for multiple projects, but it still requires some administrative overhead to manage access to the `VM`.
+

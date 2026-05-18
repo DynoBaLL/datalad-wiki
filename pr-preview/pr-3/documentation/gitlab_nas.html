@@ -744,6 +744,7 @@ When users clone the repository, datalad will always set up the remote named to 
 <h5>Gitlab<a class="headerlink" href="#gitlab" title="Link to this heading">🔗</a></h5>
 <p>The users must have accees to the GitLab repository. You can add new memebers to the GitLab project by going to the project page on GitLab, clicking on “Settings” <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> “Members”, and then adding the user’s GitLab username or email address.
 <code class="docutils literal notranslate"><span class="pre">https://[GITLAB_URL]/[GITLAB_GROUP]/[PROJECT_NAME]/project_members</span></code></p>
+<p>The user must also add their SSH key to their GitLab account to be able to authenticate when pushing and pulling from the repository. See the <a class="reference internal" href="install.html#ssh-keys"><span class="std std-ref">SSH keys</span></a> section for instructions on how to generate SSH keys and the <a class="reference internal" href="install.html#gitlab"><span class="std std-ref">Gitlab</span></a> section for instructions on how to add the SSH key to GitLab.</p>
 </section>
 <section id="vm">
 <h5>VM<a class="headerlink" href="#vm" title="Link to this heading">🔗</a></h5>
@@ -776,7 +777,8 @@ example</label><div class="sd-tab-content docutils">
 <p>There are some limitations to this setup that users should be aware of:</p>
 <ul class="simple">
 <li><p>ssh keys: users need to have their ssh keys added to the VM to be able to access the NAS storage. This might lead to some administrative overhead, especially for projects with many users or users using multiple machines ( i.e. <a class="reference internal" href="../glossary.html#term-HPC"><span class="xref std std-term">HPC</span></a>).
-This issue might be mitigated in the future by using Active Directory groups / ISIS ssh-key system to manage access to the <code class="docutils literal notranslate"><span class="pre">VM</span></code></p></li>
+This issue might be mitigated in the future by using Active Directory groups / ISIS ssh-key system to manage access to the <code class="docutils literal notranslate"><span class="pre">VM</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VM</span></code> cost: using a <code class="docutils literal notranslate"><span class="pre">VM</span></code> to manage the interaction with the <code class="docutils literal notranslate"><span class="pre">NAS</span></code> storage adds an additional cost to the project. This cost can be mitigated by using a shared <code class="docutils literal notranslate"><span class="pre">VM</span></code> for multiple projects, but it still requires some administrative overhead to manage access to the <code class="docutils literal notranslate"><span class="pre">VM</span></code>.</p></li>
 </ul>
 </section>
 </section>

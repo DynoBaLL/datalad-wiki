@@ -102,10 +102,23 @@ SSH keys are sensitive and should be kept secure. Do not share your private key 
 
 ## Gitlab
 
+To use {term}`gitlab` with {term}`datalad`, you need to set up an SSH key and add it to your Gitlab account. This allows you to authenticate securely when pushing and pulling repositories.
+To add your SSH key to Gitlab, go to your Gitlab account settings (https://gitlab.unige.ch/-/user_settings/ssh_keys) and click on "Add new key". 
+You can copy the contents of your public SSH key (usually found in `~/.ssh/id_rsa.pub`) and paste it into the "Key" field. Give it a descriptive title and click "Add key" to save it.
 
 ## Gitlab-python
 
+Gitlab-python is only needed if you want to create a new dataset on Gitlab using the `datalad create` command. It is not required for general use of datalad with Gitlab repositories.
 
+Gitlab-python is a Python library that provides an interface to interact with the Gitlab API. It allows you to automate tasks such as creating repositories, managing issues, and more. To use Gitlab-python, you need to configure it with your Gitlab instance and authentication token.
+
+```powerhell
+uv pip install gitlab-python
+```
+
+To use `gitlab-python`, you need to generate a private token. Go to your Gitlab account settings, Personal access tokens (https://gitlab.unige.ch/-/user_settings/personal_access_tokens). Click on "Add new token", add a name for the token, select the desired scopes (e.g., api), and click "Create personal access token". Make sure to copy the generated token as it will not be shown again.
+
+Create a configuration file for Gitlab-python (e.g., `~/.python-gitlab.cfg`) with the following content, replacing the URL and private token with your own values:
 ```yaml
 [global]
 default = gitlab
@@ -116,3 +129,4 @@ private_token = ###
 ssl_verify = true
 timeout = 5
 ```
+With this configuration, you can use Gitlab-python to interact with your Gitlab instance.
