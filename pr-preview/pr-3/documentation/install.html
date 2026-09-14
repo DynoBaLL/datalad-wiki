@@ -1,0 +1,628 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Install &#8212; datalad-wiki</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=88d822bf" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/install';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://dynoball.github.io/datalad-wiki/documentation/install.html" />
+    <link rel="icon" href="../_static/favicon.svg"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Gitlab + NAS setup" href="gitlab_nas.html" />
+    <link rel="prev" title="Documentation" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this site..."
+         aria-label="Search this site..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="datalad-wiki - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="datalad-wiki - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../generated/tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://dynoball.org/">
+    Neuroling
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/DynoBaLL/datalad-wiki" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../generated/tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://dynoball.org/">
+    Neuroling
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/DynoBaLL/datalad-wiki" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Documentation</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Install</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="install">
+<h1>Install<a class="headerlink" href="#install" title="Link to this heading">🔗</a></h1>
+<section id="uv">
+<h2>uv<a class="headerlink" href="#uv" title="Link to this heading">🔗</a></h2>
+<p>While datalad can be installed using various methods, we recommend using <a class="reference external" href="https://docs.astral.sh/uv/">uv</a> for managing the project’s dependencies. uv is a modern Python tool that provides a simple and efficient way to manage project dependencies and virtual environments.
+To install uv, you can run the following command in your terminal:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="0" for="sd-tab-item-0">
+macOS &amp; Linux</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="1" for="sd-tab-item-1">
+Windows</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">powershell</span> <span class="n">-ExecutionPolicy</span> <span class="n">ByPass</span> <span class="n">-c</span> <span class="s2">&quot;irm https://astral.sh/uv/install.ps1 | iex&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You might need to restart your terminal after installing uv for the changes to take effect.</p>
+</section>
+<section id="datalad">
+<h2>Datalad<a class="headerlink" href="#datalad" title="Link to this heading">🔗</a></h2>
+<p>To install datalad and its dependencies using uv, you can run the following commands in your terminal:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="0" for="sd-tab-item-2">
+macOS &amp; Linux</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>datalad
+uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>datalad-next
+uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>git-annex
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="1" for="sd-tab-item-3">
+Windows</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">uv</span> <span class="n">tool</span> <span class="n">install</span> <span class="n">datalad</span>
+<span class="n">uv</span> <span class="n">tool</span> <span class="n">install</span> <span class="n">datalad-next</span>
+<span class="n">uv</span> <span class="n">tool</span> <span class="n">install</span> <span class="n">git-annex</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This will install <a class="reference internal" href="../glossary.html#term-datalad"><span class="xref std std-term">datalad</span></a>, <a class="reference internal" href="../glossary.html#term-datalad-next"><span class="xref std std-term">datalad-next</span></a>, and <a class="reference internal" href="../glossary.html#term-git-annex"><span class="xref std std-term">git-annex</span></a> in your environment, allowing you to use them for managing your data and projects effectively.</p>
+<p><a class="reference internal" href="../glossary.html#term-git-annex"><span class="xref std std-term">git-annex</span></a> is a tool that allows you to manage large files with Git without storing the file contents in the Git repository. Datalad relies on git-annex for handling large datasets, so it’s important to have it installed as well.</p>
+<p><a class="reference internal" href="../glossary.html#term-datalad-next"><span class="xref std std-term">datalad-next</span></a> is a newer version of datalad that includes additional features and improvements. We recommend installing this version for the best experience, especially on Windows, where it provides better support and performance. <a class="reference internal" href="../glossary.html#term-datalad-next"><span class="xref std std-term">datalad-next</span></a> must be enabled once installed:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="0" for="sd-tab-item-4">
+macOS &amp; Linux</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>--add<span class="w"> </span>datalad.extensions.load<span class="w"> </span>next
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="1" for="sd-tab-item-5">
+Windows</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="p">-</span><span class="n">-global</span> <span class="p">-</span><span class="n">-add</span> <span class="n">datalad</span><span class="p">.</span><span class="n">extensions</span><span class="p">.</span><span class="n">load</span> <span class="n">next</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ssh-keys">
+<h2>SSH keys<a class="headerlink" href="#ssh-keys" title="Link to this heading">🔗</a></h2>
+<p>To use <a class="reference internal" href="../glossary.html#term-datalad"><span class="xref std std-term">datalad</span></a> effectively, especially when working with remote repositories and servers such as <a class="reference internal" href="../glossary.html#term-gitlab"><span class="xref std std-term">gitlab</span></a> and remote machines(<a class="reference internal" href="../glossary.html#term-VM"><span class="xref std std-term">VM</span></a>) it is recommended to set up <a class="reference internal" href="../glossary.html#term-ssh"><span class="xref std std-term">ssh</span></a> keys for secure and convenient authentication.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="0" for="sd-tab-item-6">
+macOS &amp; Linux</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>rsa<span class="w"> </span>-b<span class="w"> </span><span class="m">4096</span><span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;your.email@example.com&quot;</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="1" for="sd-tab-item-7">
+Windows</label><div class="sd-tab-content docutils">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">ssh-keygen</span> <span class="n">-t</span> <span class="n">rsa</span> <span class="n">-b</span> <span class="n">4096</span> <span class="n">-C</span> <span class="s2">&quot;your.email@example.com&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The new ssh key will be generated and saved in the default location (usually <code class="docutils literal notranslate"><span class="pre">~/.ssh/id_rsa</span></code> for the private key and <code class="docutils literal notranslate"><span class="pre">~/.ssh/id_rsa.pub</span></code> for the public key).</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>SSH keys are sensitive and should be kept secure. Do not share your private key with anyone, and consider using a passphrase for added security. Make sure to never commit your private key to any repository or share it in any public space.</p>
+</div>
+</section>
+<section id="nas">
+<h2>NAS<a class="headerlink" href="#nas" title="Link to this heading">🔗</a></h2>
+</section>
+<section id="gitlab">
+<h2>Gitlab<a class="headerlink" href="#gitlab" title="Link to this heading">🔗</a></h2>
+<p>To use <a class="reference internal" href="../glossary.html#term-gitlab"><span class="xref std std-term">gitlab</span></a> with <a class="reference internal" href="../glossary.html#term-datalad"><span class="xref std std-term">datalad</span></a>, you need to set up an SSH key and add it to your Gitlab account. This allows you to authenticate securely when pushing and pulling repositories.
+To add your SSH key to Gitlab, go to your Gitlab account settings (https://gitlab.unige.ch/-/user_settings/ssh_keys) and click on “Add new key”.
+You can copy the contents of your public SSH key (usually found in <code class="docutils literal notranslate"><span class="pre">~/.ssh/id_rsa.pub</span></code>) and paste it into the “Key” field. Give it a descriptive title and click “Add key” to save it.</p>
+</section>
+<section id="gitlab-python">
+<h2>Gitlab-python<a class="headerlink" href="#gitlab-python" title="Link to this heading">🔗</a></h2>
+<p>Gitlab-python is only needed if you want to create a new dataset on Gitlab using the <code class="docutils literal notranslate"><span class="pre">datalad</span> <span class="pre">create</span></code> command. It is not required for general use of datalad with Gitlab repositories.</p>
+<p>Gitlab-python is a Python library that provides an interface to interact with the Gitlab API. It allows you to automate tasks such as creating repositories, managing issues, and more. To use Gitlab-python, you need to configure it with your Gitlab instance and authentication token.</p>
+<div class="highlight-powerhell notranslate"><div class="highlight"><pre><span></span>uv pip install gitlab-python
+</pre></div>
+</div>
+<p>To use <code class="docutils literal notranslate"><span class="pre">gitlab-python</span></code>, you need to generate a private token. Go to your Gitlab account settings, Personal access tokens (https://gitlab.unige.ch/-/user_settings/personal_access_tokens). Click on “Add new token”, add a name for the token, select the desired scopes (e.g., api), and click “Create personal access token”. Make sure to copy the generated token as it will not be shown again.</p>
+<p>Create a configuration file for Gitlab-python (e.g., <code class="docutils literal notranslate"><span class="pre">~/.python-gitlab.cfg</span></code>) with the following content, replacing the URL and private token with your own values:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">global</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">default = gitlab</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[unige]</span>
+<span class="l l-Scalar l-Scalar-Plain">url = https://gitlab.unige.ch/</span>
+<span class="l l-Scalar l-Scalar-Plain">private_token =</span><span class="w"> </span><span class="c1">###</span>
+<span class="l l-Scalar l-Scalar-Plain">ssl_verify = true</span>
+<span class="l l-Scalar l-Scalar-Plain">timeout = 5</span>
+</pre></div>
+</div>
+<p>With this configuration, you can use Gitlab-python to interact with your Gitlab instance.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uv">uv</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datalad">Datalad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ssh-keys">SSH keys</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nas">NAS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gitlab">Gitlab</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gitlab-python">Gitlab-python</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Dynamics of Brain and Language Lab, University of Geneva.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__center">
+      
+        <div class="footer-item"><div class="footer-logos">
+  <a href="https://dynoball.org/" target="_blank" rel="noopener">
+    <img src="../_static/icons/logo.png" alt="DynoBaLL" />
+  </a>
+  <a href="https://www.unige.ch/" target="_blank" rel="noopener">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Uni_GE_logo.svg/3840px-Uni_GE_logo.svg.png" alt="UNIGE" />
+  </a>
+  <a href="https://campus-neuro.ch/" target="_blank" rel="noopener">
+    <img src="https://campus-neuro.ch/wp-content/uploads/2025/06/neuro@v1.2.svg" alt="Campus Neuro" />
+  </a>
+</div></div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
