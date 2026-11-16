@@ -7,7 +7,7 @@ myst:
     }
 ---
 
-```{include} ./links.md
+```{include} ../links.md
 ```
 
 # Documentation

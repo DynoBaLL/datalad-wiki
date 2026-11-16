@@ -112,7 +112,7 @@ Gitlab-python is only needed if you want to create a new dataset on Gitlab using
 
 Gitlab-python is a Python library that provides an interface to interact with the Gitlab API. It allows you to automate tasks such as creating repositories, managing issues, and more. To use Gitlab-python, you need to configure it with your Gitlab instance and authentication token.
 
-```powerhell
+```powershell
 uv pip install gitlab-python
 ```
 

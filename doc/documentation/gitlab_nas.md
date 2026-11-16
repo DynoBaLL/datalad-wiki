@@ -1,4 +1,4 @@
-```{include} ./links.md
+```{include} ../links.md
 ```
 
 ```{figure} ../_static/img/scenario_01.png
@@ -7,7 +7,7 @@ width: 100%
 alt: Gitlab + NAS setup
 name: gitlab_nas_setup
 ---
-The Gitlab + NAS setup  setup where git is used for version control and metadata storage on GitLab,  ang git-annex is used for data management on NAS storage. A virtual machine is used to manage seemless interaction between all components.
+The Gitlab + NAS setup  setup where git is used for version control and metadata storage on GitLab,  and git-annex is used for data management on NAS storage. A virtual machine is used to manage seamless interaction between all components.
 ```
 
 # Gitlab + NAS setup
@@ -31,13 +31,13 @@ This project setup may seems complex at first, but it has been designed the redu
 
 ### NAS storage
 
-For this setup, we will use the University of Geneva's {term}`NAS` storage service to store data. Sone of the advantages of using NAS storage include:
+For this setup, we will use the University of Geneva's {term}`NAS` storage service to store data. Some of the advantages of using NAS storage include:
     - High storage capacity
     - On demand storage expansion
     - Fast data access
     - Automatic data backup and redundancy
 
-To use the NAS storage, you can use an existing storage location or create a new one. You can ask for a new storage location by opening a ticket on the {ref}`unige-digitalworkspace` page: **NASac - Storage space for research data**. At the time of writing, the cost of NAS storage is 75 CHF per TB per year, with the first 1TB being free. Some faculties may contribute to the cost of storage.
+To use the NAS storage, you can use an existing storage location or create a new one. You can ask for a new storage location by opening a ticket on the [UNIGE Digital Workspace](https://unige-dwp.onbmc.com/) page: **NASac - Storage space for research data**. At the time of writing, the cost of NAS storage is 75 CHF per TB per year, with the first 1TB being free. Some faculties may contribute to the cost of storage.
 
 The following parameters related to the NAS storage will be needed for the setup:
 
@@ -100,7 +100,7 @@ For maximum compatibility, we recommend using a Linux-based remote machine, as i
 
 #### VM setup
 
-If you choose to use a {term}`VM`, you can request one from the University of Geneva's IT services by opening a ticket on the {ref}`unige-digitalworkspace` page. **Infrastructure - Hosting as a Service : Submit a request** `>` **IaaS - virtual server hosting (Linux, Windows)** `>` **Create** . We recommend to select a Linux-based operating system for the VM, such as Ubuntu or CentOS. The cost of a VM depends on the resources allocated to it, such as CPU, RAM, and storage. The smallest VM configuration (1 vCPU, 1 GB RAM, 50 GB storage) should be sufficient for most use cases and costs around 37 CHF / year.
+If you choose to use a {term}`VM`, you can request one from the University of Geneva's IT services by opening a ticket on the [UNIGE Digital Workspace](https://unige-dwp.onbmc.com/) page. **Infrastructure - Hosting as a Service : Submit a request** `>` **IaaS - virtual server hosting (Linux, Windows)** `>` **Create** . We recommend to select a Linux-based operating system for the VM, such as Ubuntu or CentOS. The cost of a VM depends on the resources allocated to it, such as CPU, RAM, and storage. The smallest VM configuration (1 vCPU, 1 GB RAM, 50 GB storage) should be sufficient for most use cases and costs around 37 CHF / year.
 
 The following parameters related to the VM will be needed for the setup:
 - the URL / IP address of the VM, which is used to connect to the VM remotely:
@@ -157,7 +157,7 @@ a VM very strong password
 
 #### Mounting NAS on the remote machine.
 
-Instal required packages for mounting NAS on the remote machine:
+Install required packages for mounting NAS on the remote machine:
 
 ``` powershell
 sudo apt install cifs-utils psmisc
@@ -352,7 +352,7 @@ datalad siblings configure -s origin --publish-depends RIA
 
 ##### Gitlab
 
-The users must have accees to the GitLab repository. You can add new memebers to the GitLab project by going to the project page on GitLab, clicking on "Settings" `>` "Members", and then adding the user's GitLab username or email address.
+The users must have access to the GitLab repository. You can add new members to the GitLab project by going to the project page on GitLab, clicking on "Settings" `>` "Members", and then adding the user's GitLab username or email address.
 `https://[GITLAB_URL]/[GITLAB_GROUP]/[PROJECT_NAME]/project_members`
 
 The user must also add their SSH key to their GitLab account to be able to authenticate when pushing and pulling from the repository. See the [SSH keys](install.md#ssh-keys) section for instructions on how to generate SSH keys and the [Gitlab](install.md#gitlab) section for instructions on how to add the SSH key to GitLab.

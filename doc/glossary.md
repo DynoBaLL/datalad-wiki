@@ -14,7 +14,7 @@ datalad
 
 datalad-next
     <img src="https://avatars.githubusercontent.com/u/8927200?s=200&v=4" class="glossary-logo-image" alt="" /> A datalad
-    extension that provides additional features and improvements over the original datalad. Once installed, datalad-next replaces the original datalad command wwithout requiring any changes to existing workflows. datalad-next is recommended for all users, especially on Windows, where it provides better support and performance.
+    extension that provides additional features and improvements over the original datalad. Once installed, datalad-next replaces the original datalad command without requiring any changes to existing workflows. datalad-next is recommended for all users, especially on Windows, where it provides better support and performance.
 
 git
     <i class="fa-brands fa-git-alt glossary-logo" aria-hidden="true"></i>A distributed version control system that allows multiple people to collaborate on a project by tracking changes to files and coordinating work on those files.
