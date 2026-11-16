@@ -65,6 +65,8 @@ doc = [
   'sphinx-gallery',
   'sphinx-issues',
   'sphinxcontrib-bibtex',
+  'sphinxcontrib-spelling',
+  'sphinx-sitemap',
 ]
 full = [
   'datalad_wiki[all]',

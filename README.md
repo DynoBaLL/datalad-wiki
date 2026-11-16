@@ -3,6 +3,7 @@
 ## TODO
 
 - [X] Enable [Github pages](https://github.com/DynoBaLL/datalad-wiki/settings/pages): deploy from the `gh-pages`.
+- [X] Add ``.nojekyll`` file to the ``gh-pages`` branch.
 
 
 ## Description

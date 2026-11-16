@@ -32,7 +32,7 @@ jobs:
       - name: Install linux dependencies
         run: |
           sudo apt update
-          sudo apt install -y optipng
+          sudo apt install -y optipng libenchant-2-2 aspell aspell-en
       - name: Install package
         run: python -m pip install --progress-bar off .[doc]
       - name: Build doc

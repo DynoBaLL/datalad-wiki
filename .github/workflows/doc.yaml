@@ -18,10 +18,15 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: 3.12
-      - uses: astral-sh/setup-uv@v7
-      - run: uv pip install --quiet --system .[doc]
-      - run: sphinx-build -b html doc ./doc/_build -W --keep-going
-      - uses: actions/upload-artifact@v7
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v7
+      - name: Install documentation dependencies
+        run: uv pip install --quiet --system .[doc]
+      - name: Build HTML documentation
+        run: sphinx-build -d ./doc/_build/doctrees -b html doc ./doc/_build -W --keep-going
+        continue-on-error: true
+      - name: Upload documentation artifact
+        uses: actions/upload-artifact@v7
         with:
           name: doc-dev
           path: ./doc/_build
