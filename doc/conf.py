@@ -6,12 +6,9 @@
 from __future__ import annotations
 
 import inspect
-import subprocess
 import sys
 from datetime import date
 from importlib import import_module
-
-from sphinx_gallery.sorting import FileNameSortKey
 
 import datalad_wiki
 
@@ -49,7 +46,6 @@ extensions = [
     "sphinxcontrib.bibtex",
     "sphinx_copybutton",
     "sphinx_design",
-    "sphinx_gallery.gen_gallery",
     "sphinx_issues",
     "sphinxcontrib.spelling",
     "sphinx_sitemap",
@@ -96,7 +92,10 @@ html_theme_options = {
             "icon": "fa-brands fa-github",
         },
     ],
-    "external_links": [{"name": "Neuroling", "url": "https://dynoball.org/"}],
+    "external_links": [
+        {"name": "DataLad", "url": "https://www.datalad.org/"},
+        {"name": "Neuroling", "url": "https://dynoball.org/"},
+    ],
     "header_links_before_dropdown": 10,
     "search_bar_text": "Search this site...",
     "show_prev_next": False,
@@ -105,7 +104,7 @@ html_theme_options = {
     "footer_end": ["sphinx-version"],
 }
 
-html_sidebars = {"**": []}
+html_sidebars = {"index": [], "glossary": [], "guide/**": ["sidebar-nav-bs"]}
 
 # -- autosummary -----------------------------------------------------------------------
 autosummary_generate = True
@@ -228,32 +227,6 @@ def linkcode_resolve(domain: str, info: dict[str, str]) -> str | None:
     fname = fname.rsplit(f"/{package}/")[1]
     url = f"{github_url}/blob/{branch}/{package}/{fname}#{lines}"
     return url
-
-# -- sphinx-gallery --------------------------------------------------------------------
-if sys.platform.startswith("win"):
-    try:
-        subprocess.check_call(["optipng", "--version"])
-        compress_images = ("images", "thumbnails")
-    except Exception:
-        compress_images = ()
-else:
-    compress_images = ("images", "thumbnails")
-
-sphinx_gallery_conf = {
-    "backreferences_dir": "generated/backreferences",
-    "compress_images": compress_images,
-    "doc_module": (f"{package}",),
-    "examples_dirs": ["../tutorials"],
-    "exclude_implicit_doc": {},  # set
-    "filename_pattern": r"\d{2}_",
-    "gallery_dirs": ["generated/tutorials"],
-    "line_numbers": False,
-    "plot_gallery": "True",  # str, to enable overwrite from CLI without warning
-    "reference_url": {f"{package}": None},
-    "remove_config_comments": True,
-    "show_memory": True,
-    "within_subsection_order": FileNameSortKey,
-}
 
 # -- linkcheck -------------------------------------------------------------------------
 linkcheck_anchors = False  # saves a bit of time
