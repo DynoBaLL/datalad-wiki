@@ -16,7 +16,7 @@ jobs:
       - name: Install Linux dependencies
         run: sudo apt update && sudo apt install -y optipng libenchant-2-2 aspell aspell-en
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Setup Python
         uses: actions/setup-python@v6
         with:
