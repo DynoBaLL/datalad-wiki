@@ -33,16 +33,14 @@ To install datalad and its dependencies using uv, you can run the following comm
 :::{tab-item} macOS & Linux
 :sync: 0 
 ```{code-block} bash
-uv tool install datalad
-uv tool install datalad-next
+uv tool install datalad --with datalad-next
 uv tool install git-annex
 ```
 :::
 :::{tab-item} Windows
 :sync: 1
 ```{code-block} powershell
-uv tool install datalad
-uv tool install datalad-next
+uv tool install datalad --with datalad-next
 uv tool install git-annex
 ```
 :::
@@ -50,6 +48,10 @@ uv tool install git-annex
 
 
 This will install {term}`datalad`, {term}`datalad-next`, and {term}`git-annex` in your environment, allowing you to use them for managing your data and projects effectively.
+
+```{note}
+`uv tool install` creates an isolated environment for each tool. {term}`datalad-next` is a datalad extension, so it must be installed in the same environment as datalad with `--with`. {term}`git-annex` is a standalone program, so it is installed as its own tool to make the `git-annex` command available.
+```
 
 {term}`git-annex` is a tool that allows you to manage large files with Git without storing the file contents in the Git repository. Datalad relies on git-annex for handling large datasets, so it's important to have it installed as well.
 
